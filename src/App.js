@@ -113,19 +113,20 @@ import "./styles.css";
 // return <button onClick={handleClick}>Clicked {count} times</button>;
 
 export default function MyApp() {
-  return (
-    <div>
-      Counters that update seperately
-      <MyButton />
-      <MyButton />
-    </div>
-  );
+  const [count, setCount] = useState(0);
 
-  function MyButton() {
-    const [count, setCount] = useState(0);
-  }
   function handleClick() {
     setCount(count + 1);
   }
-  return <button onClick={handleClick}>Clicked {count} times</button>;
+  return (
+    <div>
+      <h1>Counters that update separately</h1>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
+}
+
+function MyButton({ count, onClick }) {
+  return <button onClick={onClick}>Clicked {count} times</button>;
 }
